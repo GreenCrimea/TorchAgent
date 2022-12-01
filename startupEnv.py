@@ -17,6 +17,7 @@ class StartupEnv():
         self.display_surface = pygame.display.get_surface()
 
         self.name = 'startup'
+        self.selected_env = "startup"
 
         #render loading splash
         render_img('assets/startupEnv/loading.png', [config['screen_w'] / 2, config['screen_h'] / 2])
@@ -28,9 +29,8 @@ class StartupEnv():
         self.font_72 = pygame.font.SysFont(None, 72)
 
         self.action = "none"
-        self.selected_env = "startup"
 
-        self.mouse_cooldown = False
+        self.mouse_cooldown = True
         self.cooldown_running = False
         self.cooldown_time = 350
         self.cooldown_start = 0
@@ -64,9 +64,7 @@ class StartupEnv():
             self.action_new()
         #elif self.action == 'edit':
         #    self.action_edit()
-        elif self.action == 'changeEnv':
-            self.action_change_env()  
-
+        
 
     def action_none(self):
 
@@ -138,8 +136,3 @@ class StartupEnv():
     def action_edit(self):
 
         pass
-
-
-    def action_change_env(self):
-
-        self.env.env_selected = self.selected_env

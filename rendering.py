@@ -13,13 +13,17 @@ def render_text(    string: str,
                     rect_inflate: list = [0, 0], 
                     rect_colour: str = None,
                     rect_border_thickness: float = 0,
-                    rect_border_radius: int = 0):
+                    rect_border_radius: int = 0,
+                    centered: bool = True):
 
     display_surface = pygame.display.get_surface()
 
     text = font.render(string, True, color)
     text_rect = text.get_rect()
-    text_rect.center = location[0], location[1]
+    if centered == True:
+        text_rect.center = location[0], location[1]
+    else:
+        text_rect.topleft = location[0], location[1]
     inflated_rect = text_rect
 
     if rect_colour is not None:
