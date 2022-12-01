@@ -42,6 +42,8 @@ class GardenOfEden():
         self.cooldown_time = 350
         self.cooldown_start = 0
 
+        self.background = [None, None]
+
 
     def run(self, dt):
 
@@ -135,7 +137,9 @@ class GardenOfEden():
     def action_generate_init(self):
 
         #render loading splash
-        render_img('assets/startupEnv/loading.png', [config['screen_w'] / 2, config['screen_h'] / 2])
+        #render_img('assets/startupEnv/loading.png', [config['screen_w'] / 2, config['screen_h'] / 2])
+        #pygame.display.update()
+
+        self.background[0], self.background[1] = render_img('assets/GardenOfEden/background.png', [config['screen_w'] / 2, config['screen_h'] / 2])
+
         pygame.display.update()
-
-
