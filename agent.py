@@ -3,6 +3,7 @@ from genome import Genome, default_genome
 from personality import Personality, default_personality
 from familyTree import FamilyTree, default_family_tree
 from appearance import Appearance, default_appearance
+from brain import Brain, default_brain
 from config import config
 
 '''
@@ -14,8 +15,8 @@ class Agent():
 
 
     def __init__(   self,
-                    brain: nn.Module, 
                     name: str = '',
+                    brain: nn.Module = default_brain,
                     appearance: Appearance = default_appearance,
                     family_tree: FamilyTree = default_family_tree,
                     personality: Personality = default_personality,

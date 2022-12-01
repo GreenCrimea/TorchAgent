@@ -1,5 +1,22 @@
+
+
+'''
+CONFIG
+'''
+
+
 config = {
 
+    #METACONFIG
+    'version': 'PRE_ALPHA v0.0.1',
+
+
+    #PYGAME CONFIG
+    'screen_w': 1280,       #MIN 720p
+    'screen_h': 720,
+
+
+    #AGENT CONFIG
     'genome_size': 10,
 
     'genes_available': [
