@@ -15,6 +15,7 @@ class Agent():
 
 
     def __init__(   self,
+                    index_no: int,
                     name: str = '',
                     brain: nn.Module = default_brain,
                     appearance: Appearance = default_appearance,
@@ -47,6 +48,7 @@ class Agent():
             self.personality = personality
 
         #assorted
+        self.index_no = index_no
         self.generation = generation
         self.age = age
         self.name = name

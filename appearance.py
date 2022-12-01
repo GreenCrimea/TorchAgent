@@ -28,12 +28,12 @@ class Appearance():
                     index: int = -1):
 
         if indexable:
-            if index is not -1:
+            if index != -1:
                 return (list(self.appearance.values))[index]
             else:
                 return (list(self.appearance.values))
         else:
-            if key is not "":
+            if key != "":
                 return self.appearance[key]
             else:
                 return self.appearance

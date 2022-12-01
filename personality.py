@@ -33,12 +33,12 @@ class Personality():
                     index: int = -1):
 
         if indexable:
-                if index is not -1:
+                if index != -1:
                     return list(self.personality.values())[index]
                 else:
                     return list(self.personality.values())
         else:   
-            if key is not "":
+            if key != "":
                 return self.personality[key]
             else:
                 return self.personality

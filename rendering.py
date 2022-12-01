@@ -45,4 +45,4 @@ def render_img( path: str,
     img_rect.center = location[0], location[1]
     display_surface.blit(img, img_rect)
 
-    return img, img_rect
+    return img, img_rect    
