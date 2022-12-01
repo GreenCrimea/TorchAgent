@@ -16,14 +16,21 @@ class Environment():
 
         self.env_selected = "startup"
 
-        self.load_env(self.env_selected)
+        self.load_env()
 
 
-    def load_env(self, env_selected: str):
+    def load_env(self):
 
-        self.env = env_list[env_selected]()
+        self.env = env_list[self.env_selected]()
 
 
     def run(self, dt):
 
-        self.env.run(dt)
+        if self.env_selected == self.env.name:
+            if self.env_selected == self.env.selected_env:
+                self.env.run(dt)
+            else:
+                self.env_selected = self.env.selected_env
+                self.load_env()
+        else:
+            self.load_env()
