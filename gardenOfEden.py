@@ -31,17 +31,8 @@ class GardenOfEden():
         self.textbox_rect = None
 
         self.config = {
-            'num_agents': '0',
-            'food_density': '0',
-            'size_x': '0',
-            'size_y': '0',
-            'test': 'test',
-            'test2': 'test',
-            'test3': 'test',
-            'test4': 'test',
-            'test5': 'test',
-            'test6': 'test',
-            'test7': 'test',
+            'num_agents': '10',
+            'begin_incubating': 'True',
         }
 
         self.config_line_selected = -1
@@ -68,8 +59,8 @@ class GardenOfEden():
 
         if self.action == 'none':
             self.action_configure_env()
-        elif self.action == 'changeEnv':
-            self.action_back
+        elif self.action == 'generate':
+            self.action_generate_init()
 
 
     def action_configure_env(self):
@@ -77,7 +68,6 @@ class GardenOfEden():
         
         bounds_rect = pygame.Rect(0, 0, config['screen_w'] - 200, config['screen_h'] - 300)
         bounds_rect.center = config['screen_w'] / 2, config['screen_h'] / 2
-        pygame.draw.rect(self.display_surface, (50, 50, 50), bounds_rect, 5, 10)
 
         if self.textbox_rect is None:
             self.textbox_rect = pygame.Rect(0, 0, config['screen_w'] - 200, config['screen_h'] - 300)
@@ -88,7 +78,7 @@ class GardenOfEden():
 
             text = f'{list(self.config.keys())[i]}: {list(self.config.values())[i]}'
 
-            text_rect, _ = render_text(text, self.font_24, "WHITE", [self.textbox_rect.topleft[0] + 10, self.textbox_rect.topleft[1] + 25 + (i * 50)], centered=False)    
+            text_rect, _ = render_text(text, self.font_24, "WHITE", [self.textbox_rect.topleft[0] + 20, self.textbox_rect.topleft[1] + 25 + (i * 50)], centered=False)    
             if text_rect.collidepoint(pygame.mouse.get_pos()):
                 if pygame.mouse.get_pressed(3)[0] == True and self.cooldown_running == False:
                     self.config_line_selected = i
@@ -106,7 +96,14 @@ class GardenOfEden():
                     else:
                         self.config[f'{str(list(self.config.keys())[self.config_line_selected])}'] += event.unicode
                 elif event.type == pygame.MOUSEWHEEL:
-                    self.textbox_rect = self.textbox_rect.move(0, event.y * 10)
+                    if 495 <= self.textbox_rect.bottomleft[1] <= 725:  
+                        self.textbox_rect = self.textbox_rect.move(0, event.y * 10)
+                        if 495 > self.textbox_rect.bottomleft[1]:
+                            self.textbox_rect = self.textbox_rect.move(0, 20)
+                        if 725 < self.textbox_rect.bottomleft[1]:
+                            self.textbox_rect = self.textbox_rect.move(0, -20)
+        
+        pygame.draw.rect(self.display_surface, (50, 50, 50), bounds_rect, 5, 10)
               
         bottom_rect = pygame.Rect(bounds_rect.bottomleft[0], bounds_rect.bottomleft[1], config['screen_w'] - 200, config['screen_h'] - 300)
         pygame.draw.rect(self.display_surface, 'BLACK', bottom_rect)
@@ -125,3 +122,20 @@ class GardenOfEden():
                 self.mouse_cooldown = True
                 self.action = 'changeEnv'
                 self.selected_env = 'startup'
+
+        _, generate_rect = render_text('Generate', self.font_36, 'WHITE', [(config['screen_w'] / 2) + 400, config['screen_h'] - 100 ], [25, 25], (50, 50, 50), 4, 10)
+
+        if generate_rect.collidepoint(pygame.mouse.get_pos()):
+            _, generate_rect = render_text('Generate', self.font_36, 'WHITE', [(config['screen_w'] / 2) + 400, config['screen_h'] - 100 ], [25, 25], 'WHITE', 4, 10)
+            if pygame.mouse.get_pressed(3)[0] == True and self.cooldown_running == False:
+                self.mouse_cooldown = True
+                self.action = 'generate'
+
+
+    def action_generate_init(self):
+
+        #render loading splash
+        render_img('assets/startupEnv/loading.png', [config['screen_w'] / 2, config['screen_h'] / 2])
+        pygame.display.update()
+
+

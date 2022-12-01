@@ -1,0 +1,49 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "C:/Users/gc-main/VS_Projects/TorchAgent/assets/GardenOfEden/map.tmx",
+    "expandedProjectPaths": [
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "C:/Users/gc-main/VS_Projects/TorchAgent/assets/GardenOfEden/map.tmx": {
+            "scale": 1,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 1153,
+                "y": 860
+            }
+        },
+        "background.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "incubator.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        }
+    },
+    "last.imagePath": "C:/Users/gc-main/VS_Projects/TorchAgent/assets/GardenOfEden",
+    "map.height": 32,
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 64,
+    "map.tileWidth": 64,
+    "map.width": 32,
+    "openFiles": [
+        "C:/Users/gc-main/VS_Projects/TorchAgent/assets/GardenOfEden/map.tmx",
+        "incubator.tsx"
+    ],
+    "project": "GardenOfEden.tiled-project",
+    "recentFiles": [
+        "incubator.tsx",
+        "C:/Users/gc-main/VS_Projects/TorchAgent/assets/GardenOfEden/map.tmx",
+        "background.tsx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 64,
+        "width": 64
+    }
+}
