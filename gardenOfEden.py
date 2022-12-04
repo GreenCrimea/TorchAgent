@@ -4,6 +4,7 @@ from gardenOfEdenMaps import *
 import time
 from config import config
 from agent import Agent
+from UI import UI
 
 '''
 GARDEN OF EDEN
@@ -23,6 +24,8 @@ class GardenOfEden():
         #render loading splash
         render_img('assets/startupEnv/loading.png', [config['screen_w'] / 2, config['screen_h'] / 2])
         pygame.display.update()
+
+        self.UI = UI()
 
         #prepare env
         self.font_24 = pygame.font.SysFont(None, 24)
@@ -48,6 +51,20 @@ class GardenOfEden():
             'num_agents': '10',
             'begin_incubating': 'True',
         }
+
+        self.generation = 0
+        self.timestamp = 0
+
+        self.UI_action_dict = {
+            'paused': True,
+        }
+
+        self.timer1_start = 0
+        self.timer2_start = 0
+        self.timer1 = 0
+        self.timer2 = 0
+        self.paused_total = 0
+        self.init_pause = True
 
         self.config_line_selected = -1
 
@@ -207,6 +224,24 @@ class GardenOfEden():
                     self.incubators[i][j] = 0
 
         self.camera()
+
+        if self.UI_action_dict['paused'] == False:
+            self.init_pause = False
+            self.paused_total = self.paused_total + self.timer2
+            self.timer2_start = 0
+            self.timer2 = 0
+            if self.timer1_start == 0:
+                self.timer1_start = time.time()
+            self.timer1 = time.time() - (self.timer1_start + self.paused_total)
+            self.timestamp =+ self.timer1
+
+        elif self.UI_action_dict['paused'] == True:
+            if self.init_pause == False:
+                if self.timer2_start == 0:
+                    self.timer2_start = time.time()
+                self.timer2 = time.time() - self.timer2_start
+
+        self.UI_action_dict = self.UI.render_UI_shell(self.generation, self.timestamp)
 
         pygame.display.update()
 

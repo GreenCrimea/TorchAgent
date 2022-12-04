@@ -23,6 +23,8 @@ class Program:
 
     def run(self):
 
+        add = 0
+
         while True:
 
             for event in pygame.event.get():
@@ -33,6 +35,14 @@ class Program:
             dt = self.clock.tick() / 1000
             pygame.display.update()
             self.env.run(dt)
+
+            fps = self.clock.get_fps()
+
+            add = add + fps
+            
+            if add > 2500:
+                add = 0
+                print(f"FPS: {round(fps)}")
 
 
 if __name__ == "__main__":

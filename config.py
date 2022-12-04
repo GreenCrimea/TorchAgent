@@ -19,7 +19,6 @@ config = {
     'tile_num_h': 32,
     'camera_speed': 300,
 
-
     #AGENT CONFIG
     'genome_size': 10,
 
